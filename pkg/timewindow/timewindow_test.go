@@ -19,6 +19,14 @@ func TestTimeWindows(t *testing.T) {
 		loc   string
 		cases []testcase
 	}{
+		{"", "9am", "5pm", "America/Los_Angeles", []testcase{
+			{"2019/03/31 10:00 PDT", false},
+			{"2019/04/04 00:49 PDT", false},
+			{"2019/04/04 12:00 PDT", false},
+			{"2019/04/04 11:59 UTC", false},
+			{"2019/04/05 08:59 PDT", false},
+			{"2019/04/05 9:01 PDT", false},
+		}},
 		{"mon,tue,wed,thu,fri", "9am", "5pm", "America/Los_Angeles", []testcase{
 			{"2019/03/31 10:00 PDT", false},
 			{"2019/04/04 00:49 PDT", false},
